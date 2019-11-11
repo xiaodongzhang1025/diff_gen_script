@@ -31,14 +31,15 @@ echo --------------git status -s
 git status -s
 echo "$all_status" | while read line
 do
+  #echo =============================
+  #echo "$line"
   if [ -z "$line" ] ; then
     break
   fi
-  line_prefix=$(echo $line|awk '{print $1}')
-  tmp_name=$(echo $line|awk '{print $2}')
+  line_prefix=$(echo "$line" | awk '{print $1}')
+  tmp_name=$(echo "$line" | awk '{print $2}')
   echo -n "."
-  #echo =============================
-  #echo $line
+  
   #echo $line_prefix
   #echo $tmp_name
   if [ "$line_prefix" = "D" ] ; then
@@ -86,7 +87,7 @@ do
       cp -p  $tmp_name $target_git_diff_dir/mod/$tmp_name
     else
       #echo cp -p  -r --parents $tmp_name $target_git_diff_dir/mod/
-      cp -p  -r --parents $tmp_name $target_git_diff_dir/mod/
+      cp -p -r $tmp_name/* $target_git_diff_dir/mod/$tmp_name
     fi
   fi
 done
