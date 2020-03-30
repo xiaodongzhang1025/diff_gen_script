@@ -97,5 +97,8 @@ echo $target_git_diff_dir
 #echo ls -l $target_git_diff_dir
 #ls $target_git_diff_dir -l
 
+cd $target_git_diff_dir
+diff -Naru org/ mod/ > diff.patch
+echo "patch -p1 < diff.patch" > Readme.txt
 echo '-----------------The End-----------------'
 cd $CUR_DIR
